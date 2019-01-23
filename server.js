@@ -1,20 +1,22 @@
+require('./config/config');
+
 const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 
 const app = express();
-require('./models/User'); // todo: ????
+require('./models/User');
 const User = mongoose.model('users');
-const cookieKey = require('./config/keys').cookieKey;
+// const cookieKey = require('./config/keys').cookieKey;
 
 const db = process.env.MONGODB_URI || 'mongodb://localhost:27017/SurveyMailer';
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 app.use(
 	cookieSession({
 		maxAge: 1000 * 3600 * 24 * 30,
-		keys: [ cookieKey ]
+		keys: [ process.env.cookieKey ]
 	})
 );
 app.use(passport.initialize());
