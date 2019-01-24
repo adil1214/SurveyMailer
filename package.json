@@ -1,22 +1,25 @@
 {
-  "name": "SurveyMailer",
-  "version": "1.0.0",
-  "main": "server.js",
-  "author": "ADIL",
-  "license": "MIT",
-  "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
-  },
-  "dependencies": {
-    "cookie-session": "^2.0.0-beta.3",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.4",
-    "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0"
-  },
-  "engines": {
-    "node": "10.13.0",
-    "yarn": "1.9.4"
-  }
+	"name": "SurveyMailer",
+	"version": "1.0.0",
+	"main": "server.js",
+	"author": "ADIL",
+	"license": "MIT",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js --ignore client/",
+		"client": "cd client && yarn start",
+		"dev": "concurrently -n \"server,client\" -p \"[{name}] [{time}]\" -t \"HH:mm:ss\" \"yarn:server\" \"yarn:client\" --kill-others"
+	},
+	"dependencies": {
+    "concurrently": "^4.1.0",
+		"cookie-session": "^2.0.0-beta.3",
+		"express": "^4.16.4",
+		"mongoose": "^5.4.4",
+		"passport": "^0.4.0",
+		"passport-google-oauth20": "^1.0.0"
+	},
+	"engines": {
+		"node": "10.13.0",
+		"yarn": "1.9.4"
+	}
 }
