@@ -8,7 +8,7 @@
 		"start": "node server.js",
 		"server": "nodemon server.js --ignore client/",
 		"client": "cd client && yarn start",
-		"dev": "concurrently -n \"server,client\" -p \"[{name}] [{time}]\" -t \"HH:mm:ss\" \"yarn:server\" \"yarn:client\" --kill-others"
+		"dev": "concurrently -n \"server,client\" -p \"[{time}][{name}]\" -t \"HH:mm:ss\" \"yarn:server\" \"yarn:client\" --kill-others"
 	},
 	"dependencies": {
     "concurrently": "^4.1.0",

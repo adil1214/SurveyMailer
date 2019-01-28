@@ -12,22 +12,14 @@ module.exports = (passport) => {
 				callbackURL: '/auth/google/callback',
 				proxy: true
 			},
-			(accessToken, refreshToken, profile, done) => {
-				User.findOne({ googleId: profile.id })
-					.then((user) => {
-						if (user) {
-							console.log('user already exists in db');
-							done(null, user);
-						} else {
-							new User({ googleId: profile.id })
-								.save()
-								.then((user) => {
-									done(null, user);
-								})
-								.catch((err) => console.log(err));
-						}
-					})
-					.catch((err) => console.log(err));
+			async (accessToken, refreshToken, profile, done) => {
+				const existingUser = await User.findOne({ googleId: profile.id });
+				if (existingUser) {
+					console.log('user already exists in db'); // FIXME:
+					return done(null, existingUser);
+				}
+				const createdUser = await new User({ googleId: profile.id }).save();
+				done(null, createdUser);
 			}
 		)
 	);
