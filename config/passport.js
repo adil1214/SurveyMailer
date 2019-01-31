@@ -15,7 +15,6 @@ module.exports = (passport) => {
 			async (accessToken, refreshToken, profile, done) => {
 				const existingUser = await User.findOne({ googleId: profile.id });
 				if (existingUser) {
-					console.log('user already exists in db'); // FIXME:
 					return done(null, existingUser);
 				}
 				const createdUser = await new User({ googleId: profile.id }).save();
