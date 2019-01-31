@@ -6,6 +6,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     // unique: true
+  },
+  credits: {
+    type: Number,
+    default: 0
   }
 });
 

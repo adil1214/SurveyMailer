@@ -4,6 +4,7 @@ const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 
 const app = express();
 require('./models/User');
@@ -12,6 +13,8 @@ const User = mongoose.model('users');
 
 const db = process.env.MONGODB_URI || 'mongodb://localhost:27017/SurveyMailer';
 const port = process.env.PORT;
+
+app.use(bodyParser.json());
 
 app.use(
 	cookieSession({
@@ -43,6 +46,7 @@ passport.deserializeUser((id, done) => {
 
 require('./config/passport')(passport);
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 app.listen(port, () => {
 	console.log(`server started on port ${port}`);

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Checkout from './Checkout';
 
 class Header extends Component {
 	renderContent() {
@@ -15,16 +16,22 @@ class Header extends Component {
 				);
 			default:
 				return (
-					<li>
-						<a href="/api/logout">Logout</a>
-					</li>
+					<Fragment>
+						<li>
+							<Checkout />
+						</li>
+						<li style={{ paddingRight: '15px' }}>Credits: {this.props.auth.credits}</li>
+						<li>
+							<a href="/api/logout">Logout</a>
+						</li>
+					</Fragment>
 				);
 		}
 	}
 
 	render() {
 		return (
-			<nav>
+			<nav className="green darken-4">
 				<div className="nav-wrapper">
 					<Link to={this.props.auth ? '/surveys' : '/'} className="brand-logo left">
 						SurveyMailer

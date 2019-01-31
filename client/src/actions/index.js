@@ -9,3 +9,12 @@ export const fetchUser = () => (dispatch) => {
     })
   }).catch((err) => console.log(err));
 };
+
+export const handleToken = (token) => (dispatch) => {
+	axios.post('/api/stripe', token).then((res) => {
+    dispatch({
+      type: FETCH_USER,
+      payload: res.data
+    })
+  }).catch((err) => console.log(err));
+};
