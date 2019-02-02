@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
+const auth = require('./routes/authRoutes');
+const api = require('./routes/apiRoutes');
+
 const app = express();
 require('./models/User');
 const User = mongoose.model('users');
@@ -45,8 +48,8 @@ passport.deserializeUser((id, done) => {
 });
 
 require('./config/passport')(passport);
-require('./routes/authRoutes')(app);
-require('./routes/billingRoutes')(app);
+app.use('/auth', auth);
+app.use('/api', api);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client/build')));
