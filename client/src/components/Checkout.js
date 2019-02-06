@@ -14,6 +14,7 @@ class Checkout extends Component {
 				amount={500}
 				stripeKey={process.env.REACT_APP_STRIPE_KEY}
 			>
+				{/* eslint-disable-next-line */}
 				<a className="waves-effect waves-light btn">
 					<i className="material-icons right">attach_money</i>Add Credits
 				</a>
