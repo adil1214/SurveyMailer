@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const stripe = require('stripe')(process.env.StripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin');
+const surveys = require('./surveyRoutes');
 
 // @route   GET api/logout
 // @desc    Logout route
@@ -36,5 +37,7 @@ router.post('/stripe', requireLogin, (req, res) => {
 		.then((newUser) => res.send(newUser))
 		.catch((err) => console.log(err));
 });
+
+router.use('/surveys', surveys);
 
 module.exports = router;

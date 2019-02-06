@@ -6,13 +6,14 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
+const app = express();
+require('./models/User');
+require('./models/Survey');
+const User = mongoose.model('users');
+
 const auth = require('./routes/authRoutes');
 const api = require('./routes/apiRoutes');
 
-const app = express();
-require('./models/User');
-const User = mongoose.model('users');
-// const cookieKey = require('./config/keys').cookieKey;
 
 const db = process.env.MONGODB_URI || 'mongodb://localhost:27017/SurveyMailer';
 const port = process.env.PORT;
