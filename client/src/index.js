@@ -6,6 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
 
+import axios from 'axios';
+window.axios = axios;
+
 const store1 = configureStore();
 
 ReactDOM.render(

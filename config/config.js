@@ -11,7 +11,8 @@ if (env === 'test' || env === 'development') {
 
 /** TODO: setup Prodduction
  * Create heroku app/dyno
- * Create credentials for SurverMailer-prod & set authorized redirect URIs
+ * Create google credentials for SurverMailer-prod & set authorized redirect URIs
  * Add env variables to heroku
+ * Setup redirect URL for prodction
  * Push to heroku
  */
