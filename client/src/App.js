@@ -1,18 +1,18 @@
 import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { fetchUser } from './actions';
 import Header from './components/Header';
 import Landing from './components/Landing';
-
-
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import Dashboard from './components/Dashboard';
+import SurveyNew from './components/surveys/SurveyNew';
 
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchUser();
+		M.AutoInit();
 	}
 
 	render() {
