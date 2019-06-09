@@ -16,7 +16,8 @@ class Checkout extends Component {
 			>
 				{/* eslint-disable-next-line */}
 				<a className="waves-effect waves-light btn">
-					<i className="material-icons right">attach_money</i>Add Credits
+					{/* <i className="material-icons right">attach_money</i> */}
+					Add Credits
 				</a>
 			</StripeCheckout>
 		);
