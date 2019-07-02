@@ -7,8 +7,8 @@ module.exports = (survey) => {
 					<p>Please answer the following question:</p>
 					<p>${survey.body}</p>
 					<div>
-						<a href="${process.env.redirectURL}/api/surveys/thanks">yes</a>
-						<a href="${process.env.redirectURL}/api/surveys/thanks">no</a>
+						<a href="${process.env.redirectURL}/api/surveys/${survey.id}/yes">Yes</a>
+						<a href="${process.env.redirectURL}/api/surveys/${survey.id}/no">No</a>
 					</div>
 				</div>
 			</body>

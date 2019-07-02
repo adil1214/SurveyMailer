@@ -1,13 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { reset } from 'redux-form';
 import { submitSurvey } from '../../actions/index';
 /** TODO:
  * react-router-navigation-prompt
  * sweetaler
  */
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
+const SurveyFormReview = ({
+	onCancel,
+	formValues,
+	submitSurvey,
+	history,
+	dispatch
+}) => {
 	const labelsAndNames = [
 		{ name: 'title', label: 'Survey Title' },
 		{ name: 'subject', label: 'Subject Line' },
@@ -35,6 +42,10 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 			>
 				Send Survey <i className="material-icons right">email</i>
 			</button>
+			{/* <button onClick={() => dispatch(reset('surveyForm'))}>
+				reset form magical buttton
+			</button> */}
+			{/* FIXME: //https://redux-form.com/6.0.0-alpha.4/docs/faq/howtoclear.md/ */}
 		</div>
 	);
 };
