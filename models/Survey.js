@@ -19,12 +19,14 @@ const SurveySchema = new Schema({
 		type: String,
 		required: true
 	},
-	recipients: [ recepientShema ],
+	recipients: [recepientShema],
 	yes: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	no: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	dateSent: {
 		type: Date,
