@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, SUBMIT_SURVEY } from './types';
+import { FETCH_USER, SUBMIT_SURVEY, FETCH_SURVEYS } from './types';
 
 export const fetchUser = () => (dispatch) => {
 	axios
@@ -34,10 +34,16 @@ export const submitSurvey = (values, history) => (dispatch) => {
 				type: FETCH_USER,
 				payload: res.data
 			});
-			history.push('/surveys');
+			history.push('/surveys'); // FIXME: should this even be here ?
 		})
 		.catch((err) => console.log(err));
 	return {
 		type: SUBMIT_SURVEY
 	};
+};
+
+export const fetchSurveys = () => (dispatch) => {
+	axios.get('/api/surveys').then((res) => {
+		dispatch({ type: FETCH_SURVEYS, payload: res.data });
+	});
 };

@@ -15,9 +15,22 @@ const surveyTemplate = require('./../services/emailTemplates/surveyTemplate');
 
 // @route   GET /api/surveys/thanks
 // @desc    Static thank you message.   // TODO: to be replaced later by a react component.
-// @access  Public
+// @access  Public.
 router.get('/:surveyId/:response', (req, res) => {
 	res.send('Thank you for voting.');
+});
+
+// @route   GET /api/surveys
+// @desc   	Return all surveys created by the logged in user.
+// @access  Private
+router.get('/', requireLogin, (req, res) => {
+	// TODO: split the query documents (e.g: 50survey/page)
+	Survey.find({ _user: req.user.id }).select('-recipients').then((surveys) => {
+		if (!surveys) {
+			return res.status(404).json('There are no surveys.');
+		}
+		return res.json(surveys);
+	});
 });
 
 // @route   POST /api/surveys
@@ -50,10 +63,9 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
 });
 
 // @route   GET /api/surveys/webhooks
-// @desc    To test if the endpoint is tunneled proprely
-// @access  Private
+// @desc    To test if the endpoint is tunneled proprely ( TODO: remove later)
+// @access  Public
 router.get('/webhooks', (req, res) => {
-	// TODO: remove this endpoint later
 	console.log('GET /api/surveys/webhooks');
 	res.status(201).send('hi there im public');
 });

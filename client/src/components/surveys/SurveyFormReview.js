@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { reset } from 'redux-form';
 import { submitSurvey } from '../../actions/index';
-/** TODO:
+/** TODO: add
  * react-router-navigation-prompt
  * sweetaler
  */
