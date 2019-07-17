@@ -5,6 +5,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 require('./models/User');
@@ -14,7 +15,6 @@ const User = mongoose.model('users');
 const auth = require('./routes/authRoutes');
 const api = require('./routes/apiRoutes');
 
-
 const db = process.env.MONGODB_URI || 'mongodb://localhost:27017/SurveyMailer';
 const port = process.env.PORT;
 
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(
 	cookieSession({
 		maxAge: 1000 * 3600 * 24 * 30,
-		keys: [ process.env.cookieKey ]
+		keys: [process.env.cookieKey]
 	})
 );
 app.use(passport.initialize());
